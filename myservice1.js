@@ -68,12 +68,12 @@ function doTheJob (req, res) {
     consoleWrite("\n reloaded page " + urlmsg+"\n " + txt + "\n");
 
     // --- "frontend" ---
-    // res.write("Welcome to my trionymo<br>The time is " + strDateNow() + "<br><br>");
-    // res.write(urlmsg);
-    // res.end("<br>Trionymo: " + txt + "<br><br>");
+    res.write("Welcome to my trionymo<br>The time is " + strDateNow() + "<br><br>");
+    res.write(urlmsg);
+    res.end("<br>Trionymo: " + txt + "<br><br>");
 
     // ---web service---
-    res.end(JSON.stringify(myTrionymo));
+    // res.end(JSON.stringify(myTrionymo));
 
 }
 
