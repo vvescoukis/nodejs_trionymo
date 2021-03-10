@@ -34,27 +34,32 @@ function doTheJob (req, res) {
     let q = url.parse(req.url, true).query;
     let urlmsg = "url: " + req.url + "<br><br>";
 
+    if ((q.a === undefined) || (q.b === undefined) || (q.c === undefined)) {
+        consoleWrite("missing url parameter(s)");
+        return;
+    }
+
     let txt;
-    let myTrionymo = {  A: 0, B: 0, C: 0,
+    let myTrionymo = {  A:0, B:0, C:0,
                         solvableR: true,
-                        root1: 0, root2: 0 };
+                        root1:0, root2:0 };
 
     try {
         myTrionymo.A = parseFloat(q.a);
         myTrionymo.B = parseFloat(q.b);
         myTrionymo.C = parseFloat(q.c);
-        if (isNaN(myTrionymo.A)) throw "a not present";
-        if (isNaN(myTrionymo.B)) throw "b not present";
-        if (isNaN(myTrionymo.C)) throw "c not present";
+        // if (isNaN(myTrionymo.A)) throw "a not present";
+        // if (isNaN(myTrionymo.B)) throw "b not present";
+        // if (isNaN(myTrionymo.C)) throw "c not present";
     }
     catch(err) {
         consoleWrite(err);
         myTrionymo.solvableR = false;
     }
 
-    if (myTrionymo.solvableR) {
+    // if (myTrionymo.solvableR) {
         mySolveT(myTrionymo);
-    }
+    // }
 
     if (myTrionymo.solvableR) {
         txt = "solved: a=" + myTrionymo.A + " b=" + myTrionymo.B + " c=" + myTrionymo.C + "  ("
